@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Request Pickup</title>
+</head>
+<body>
+    <h1>Request Pickup</h1>
+    <button id="requestPickupBtn">Request Pickup</button>
+
+    <script>
+        document.getElementById('requestPickupBtn').addEventListener('click', function() {
+            fetch('/api/pickup-requests/', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': 'Bearer ' + localStorage.getItem('token')
+                },
+                body: JSON.stringify({})
+            })
+            .then(response => response.json())
+            .then(data => {
+                alert('Pickup requested successfully!');
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+        });
+    </script>
+</body>
+</html>
